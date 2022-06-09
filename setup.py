@@ -68,9 +68,9 @@ def install_ipython_profile(install_lib_dir):
             os.path.join(install_lib_dir, "evo", "ipython_config.py"),
             os.path.join(profile_dir, "ipython_config.py"))
     except sp.CalledProcessError as e:
-        print("IPython error:", e.output, file=sys.stderr)
+        print("IPython error:", e, file=sys.stderr)
     except Exception as e:
-        print("Unexpected error:", e.message, file=sys.stderr)
+        print("Unexpected error:", e, file=sys.stderr)
 
 
 def activate_argcomplete():
@@ -78,7 +78,10 @@ def activate_argcomplete():
         return
     print("Activating argcomplete...")
     try:
-        sp.check_call("activate-global-python-argcomplete", shell=True)
+        if sys.version_info >= (3, 0):
+            sp.check_call("activate-global-python-argcomplete3", shell=True)
+        else:
+            sp.check_call("activate-global-python-argcomplete", shell=True)
         print("Done - argcomplete should work now.")
     except sp.CalledProcessError as e:
         print("Error:", e.output, file=sys.stderr)
