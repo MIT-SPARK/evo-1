@@ -265,10 +265,10 @@ def prepare_axis(fig, plot_mode=PlotMode.xy, subplot_arg="111"):
     :return: the matplotlib axis
     """
     if plot_mode == PlotMode.xyz:
-        ax = fig.add_subplot(subplot_arg, projection="3d", aspect="equal")
+        ax = fig.add_subplot(int(subplot_arg), projection="3d", aspect="auto")
     else:
-        ax = fig.add_subplot(subplot_arg, aspect="equal")
-    plt.axis("equal")
+        ax = fig.add_subplot(int(subplot_arg), aspect="auto")
+    plt.axis("auto")
     if plot_mode in {PlotMode.xy, PlotMode.xz, PlotMode.xyz}:
         xlabel = "$x$ (m)"
     elif plot_mode in {PlotMode.yz, PlotMode.yx}:
@@ -528,7 +528,7 @@ def error_array(fig, err_array, x_array=None, statistics=None, threshold=None, c
     :return: the matplotlib figure with the plot
     """
     from matplotlib.ticker import FormatStrFormatter
-    ax = fig.add_subplot(subplot_arg)
+    ax = fig.add_subplot(int(subplot_arg))
     if cumulative:
         if x_array:
             ax.plot(x_array, np.cumsum(err_array),
