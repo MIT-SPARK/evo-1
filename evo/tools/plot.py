@@ -551,11 +551,11 @@ def error_array(fig, err_array, x_array=None, statistics=None, threshold=None, c
         #ax.plot(xmax, ymax, 'ro',markersize=10)
         #ax.text(xmax*(1-0.1), ymax*(1+(1/(1+ymax)*0.05)), 'Max: {0:.5f}'.format(ymax))
     # Set y axis limit if given:
-    if y_max is not -1:
+    if y_max != -1:
         ymin, _ = ax.get_ylim()
         ax.set_ylim(ymin, y_max)
     # Set y axis limit if given:
-    if y_min is not -1:
+    if y_min != -1:
         _, ymax = ax.get_ylim()
         ax.set_ylim(y_min, ymax)
 
