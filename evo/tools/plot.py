@@ -390,7 +390,7 @@ def traj_colormap(ax, traj, array, plot_mode, min_map, max_map, title=""):
             set_aspect_equal_3d(ax)
     fig = plt.gcf()
     cbar = fig.colorbar(
-        mapper, ticks=[min_map, (max_map - (max_map - min_map) / 2), max_map])
+        mapper, ax=ax, ticks=[min_map, (max_map - (max_map - min_map) / 2), max_map])
     cbar.ax.set_yticklabels([
         "{0:0.3f}".format(min_map),
         "{0:0.3f}".format(max_map - (max_map - min_map) / 2),
